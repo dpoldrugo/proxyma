@@ -246,7 +246,12 @@ public class JSRewriteTransformer extends m.c.m.proxyma.plugins.transformers.Abs
         retValue.append(proxymaRootURL.getHost());
         if (proxymaRootURL.getPort() > 0)
             retValue.append(":").append(proxymaRootURL.getPort());
-        retValue.append(rewriter.masqueradeURL(theUrl, aResouce));
+        String masqueradeURL = rewriter.masqueradeURL(theUrl, aResouce);
+        if (masqueradeURL.toLowerCase().startsWith("http://"))
+        	retValue = new StringBuffer("'"+masqueradeURL);
+        else {
+        	retValue.append(masqueradeURL);
+        }
         retValue.append("'");
 
         log.finer("Rewritten URL to: " + retValue.toString());
