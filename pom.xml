@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+         http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <!--
+    Document   : pom.xml
+    Description:
+       This is the Maven 2 POM file for the Proxyma Project..
+
+    NOTE:
+       this software is released under GPL License.
+       See the LICENSE of this distribution for more informations.
+
+       @author Marco Casavecchia Morganti (marcolinuz) [marcolinuz-at-gmail.com]
+       @version $Id: pom.xml 182 2010-07-03 12:12:31Z marcolinuz $
+    -->
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>m.c.m.proxyma</groupId>
+    <version>1.1-SNAPSHOT</version>
+    <artifactId>proxyma</artifactId>
+    <packaging>pom</packaging>
+    <name>proxyma</name>
+    <url>http://proxyma.sourceforge.net/</url>
+    <modules>
+        <module>proxyma-core</module>
+        <module>proxyma-webapp</module>
+    </modules>
+</project>

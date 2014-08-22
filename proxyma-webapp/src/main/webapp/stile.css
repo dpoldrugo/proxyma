@@ -1,0 +1,225 @@
+/**
+ * This is the css stylesheet of proxyma console.
+ *
+ * NOTE: This is only the hook to the reverse-proxy engine. If you are looking
+ *       for proxyma intercafe take a look to the proxyma-console webapp.
+ * </p><p>
+ * NOTE: this software is released under GPL License.
+ *       See the LICENSE of this distribution for more informations.
+ * </p>
+ *
+ * @author Marco Casavecchia Morganti (marcolinuz) [marcolinuz-at-gmail.com]
+ * @version $Id: stile.css 169 2010-07-02 21:11:21Z marcolinuz $
+ */
+
+/**************************/
+/**      generali        **/
+/**************************/
+body {
+	margin:0px;
+	padding:0px;
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+}
+/**************************/
+/**      intestazione    **/
+/**************************/
+#intestazione {
+	width:100%;
+	/*position:absolute;*/
+	top:14px;
+	left:0px;
+	height:60px;
+}
+#logo {
+	float:left;
+}
+#triangolo {
+	float:left;
+}
+#riga_desc{
+	float:left;
+	width:70%;
+	background-image:url(img/riga.png);
+	background-position:left;
+	background-repeat:repeat-y;
+	color:#FFFFFF;
+	font-weight:bold;
+	margin-top:16px;
+	font-size:0.8em;
+	height:16px;
+}
+#linea_rossa {
+	width:100%;
+	position:absolute;
+	top:40px;
+	left:0px;
+	background-color:#960000;
+	padding-top:2px;
+}
+#path {
+        font-size:0.8em;
+	margin-bottom:20px;
+}
+/**************************/
+/**      fondo           **/
+/**************************/
+#fondo {
+	width:100%;
+	position:relative;
+	left:20px;
+	margin-top:20px;
+}
+#author {
+	border-top:1px solid #000000;
+	margin-top:15px;
+	padding-right:20px;
+	padding-left:5px;
+	float:left
+}
+#author p{
+	font-size:0.7em;
+	margin-top:0px;
+}
+
+#www {
+	background-image:url(img/angolo_grigio.gif);
+	background-position:left;
+	background-repeat:no-repeat;
+	text-indent:18px;
+	margin-top:0px;
+}
+
+#release, #www {
+	float:left;
+	font-size:0.8em;
+	background-color:#7F7F7F;
+	padding-bottom:0px;
+	height:16px;
+	margin-top:10px;
+}
+#release a, #www a {
+	color:#FFFFFF;
+	text-decoration:none;
+	height:14px;
+}
+/**************************/
+/**   centrale           **/
+/**************************/
+#centrale {
+	width:100%;
+	position:relative;
+	left:0px;
+	/*margin-top:60px;*/
+}
+
+#titolo{
+	font-size:medium;
+	font-weight:bold;
+	text-align:center;
+	text-transform:capitalize;
+	border-bottom:1px solid #960000;
+	color:#960000;
+	margin-left:20px;
+	margin-right:20px;
+}
+
+
+.tableTitle{
+	font-size:medium;
+	font-weight:bold;
+	text-align:center;
+	text-transform:capitalize;
+	border-bottom:1px solid #960000;
+	color:#960000;
+	margin-left:20px;
+	margin-right:20px;
+}
+
+#toggleView {
+    margin-top: 5px;
+}
+
+#line {
+    margin-bottom:5px;
+    border-bottom:1px solid #cccccc;
+    padding-bottom:5px;
+}
+
+.folderActions {
+    border-style: none;
+}
+/**************************/
+/**   domande            **/
+/**************************/
+#gruppo {
+	text-align:center;
+/*	font-weight:bold; */
+}
+
+.risposta {
+	margin-left:20px;
+	margin-bottom:3px;
+}
+
+.odd {
+	font-size:small;
+	font-weight:normal;
+	border-bottom:1px solid #cccccc;
+	padding-bottom:10px;
+	background-color: #daeaff
+}
+
+.even {
+	font-size:small;
+	font-weight:normal;
+	border-bottom:1px solid #cccccc;
+	padding-bottom:10px;
+	background-color: #f0f0f0
+}
+
+.labels {
+	font-size:small;
+	font-weight:normal;
+	border-bottom:1px solid #cccccc;
+	padding-bottom:10px;
+	background-color: #bacaff
+}
+
+.submit {
+	font-size:small;
+	font-weight:normal;
+	border-bottom:1px solid #cccccc;
+	padding-bottom:10px;
+	background-color: #ffffff
+}
+
+.endlinks {
+	font-size:small;
+	font-weight:normal;
+	margin-top:10px;
+	padding-bottom:10px;
+	background-color: #ffffff
+}
+
+.percorso {
+        font-size:small;
+	font-weight:normal;
+	margin-left:20px;
+	margin-bottom:3px;
+}
+
+.message {
+	margin-left:20px;
+	margin-top:10px;
+	margin-bottom:10px;
+}
+
+.loglevel {
+        font-size:0.8em;
+        padding-left:100px;
+	margin-bottom:3px;
+}
+
+.logdropdown {
+	margin-bottom:3px;
+}

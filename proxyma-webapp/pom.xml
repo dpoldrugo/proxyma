@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Document   : pom.xml
+    Description:
+       This is the Maven 2 POM file for the Proxyma-Web module of
+       the Proxyma Project..
+
+    NOTE:
+       this software is released under GPL License.
+       See the LICENSE of this distribution for more informations.
+
+       @author Marco Casavecchia Morganti (marcolinuz) [marcolinuz-at-gmail.com]
+       @version $Id: pom.xml 182 2010-07-03 12:12:31Z marcolinuz $
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>m.c.m.proxyma</groupId>
+    <artifactId>proxyma-webapp</artifactId>
+    <packaging>war</packaging>
+    <version>1.1-SNAPSHOT</version>
+
+    <name>proxyma-webapp</name>
+    <url>http://proxyma.sourceforge.net/</url>
+
+    <parent>
+        <groupId>m.c.m.proxyma</groupId>
+        <artifactId>proxyma</artifactId>
+        <version>1.1-SNAPSHOT</version>
+    </parent>
+
+    <repositories>
+        <repository>
+            <id>mortbay-release-repo</id>
+            <name>MortBay Release Repo</name>
+            <url>http://jetty.mortbay.org/maven2/release</url>
+        </repository>
+    </repositories>
+
+    <dependencies>
+        <dependency>
+            <groupId>m.c.m.proxyma</groupId>
+            <artifactId>proxyma-core</artifactId>
+            <version>1.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-configuration</groupId>
+            <artifactId>commons-configuration</artifactId>
+            <version>1.6</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>commons-jxpath</groupId>
+            <artifactId>commons-jxpath</artifactId>
+            <version>1.3</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>3.8.1</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
+            <version>2.5</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet.jsp</groupId>
+            <artifactId>jsp-api</artifactId>
+            <version>2.0</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+    <build>
+        <finalName>proxyma</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.6</source>
+                    <target>1.6</target>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.mortbay.jetty</groupId>
+                <artifactId>maven-jetty-plugin</artifactId>
+            </plugin>
+            
+        </plugins>
+    </build>
+</project>
+

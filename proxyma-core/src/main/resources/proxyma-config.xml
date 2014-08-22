@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Document   : proxyma-config.xml
+    Description:
+       This is the main configuration file for the proxyma-core package.
+
+    NOTE: 
+       this software is released under GPL License.
+       See the LICENSE of this distribution for more informations.
+	
+       @author Marco Casavecchia Morganti (marcolinuz) [marcolinuz-at-gmail.com]
+       @version $Id: proxyma-config.xml 182 2010-07-03 12:12:31Z marcolinuz $ 
+-->
+<proxyma-configuration>
+
+    <!-- Global settings for every instance of proxyma -->
+    <global>
+        <!-- Version of this release of the proxyma-core engine -->
+        <version>1.1-SNAPSHOT</version>
+
+       <!-- Specify the default encoding charset to use -->
+       <defaultEncoding>UTF-8</defaultEncoding>
+
+       <!-- Byte Buffer implementation for the resource data store.
+            There are 3 different types of this:
+            m.c.m.proxyma.buffers.RamBuffer -> It stores only small objects into RAM.
+            m.c.m.proxyma.buffers.FileBuffer -> It can store objects of any size,
+                                                the data are saved into temporary files.
+            m.c.m.proxyma.buffers.SmartBuffer -> It can store objects of any size,
+                                                 if the object are small they're
+                                                 stored in RAM, else it uses a
+                                                 FileBuffer to store data into
+                                                 temporary files. -->
+        <byteBufferImplementation writerClass="m.c.m.proxyma.buffers.SmartBuffer"
+                                  threadSafeReaderClass="m.c.m.proxyma.buffers.SmartBufferReader"/>
+
+        <!-- It enabled (true) a list of the registered proxy folders will be
+             generated if the client requests the proxyma root URI -->
+        <showProxyFoldersOnRootPath>true</showProxyFoldersOnRootPath>
+
+        <!-- Logging policy
+             level: possible values are SEVERE, WARNING, INFO, CONFIG, FINE, FINER, FINEST, ALL
+             directoryPath: is the directory where all the log files of Proxyma will be wrtitten
+                            PS: Do not forget the tailing slash "/"
+             maxLinesPerFile: maximun number of lines for each log file
+             retentionPolicy: maximum number of old log files to keep on the disk -->
+        <logging level="INFO" maxLinesPerFile="500000" retentionPolicy="5" />
+    </global>
+    
+    <!-- This element defines the settings for the new ProxyFolders
+         created by the ProxymaFacade.. -->
+    <defaultContext>
+        <!-- These are the default settings that ProxymaFacade will apply to
+             the any new ProxyFolders that it creates -->
+        <folderSettings maxPostSize="5000">
+            <preprocessors>
+                <resourceHandler class="m.c.m.proxyma.plugins.preprocessors.CookiesRewritePreprocessor" />
+            </preprocessors>
+            <cacheProvider class="m.c.m.proxyma.plugins.caches.EhcacheCacheProvider" />
+            <retriver class="m.c.m.proxyma.plugins.retrivers.SimpleHttpRetriver"/>
+            <transformers>
+                <resourceHandler class="m.c.m.proxyma.plugins.transformers.CharsetInspectorTransformer"/>
+                <resourceHandler class="m.c.m.proxyma.plugins.transformers.HtmlUrlRewriteTransformer"/>
+                <resourceHandler class="m.c.m.proxyma.plugins.transformers.CssUrlRewriteTransformer"/>
+                <resourceHandler class="m.c.m.proxyma.plugins.transformers.CookiesRevriteTransformer"/>
+                <resourceHandler class="m.c.m.proxyma.plugins.transformers.HttpRedirectsRewriteTransformer"/>
+                <resourceHandler class="m.c.m.proxyma.plugins.transformers.JSRewriteTransformer"/>
+            </transformers>
+            <serializer class="m.c.m.proxyma.plugins.serializers.SimpleSerializer"/>
+        </folderSettings>
+    </defaultContext>
+
+    <!-- The following list is a collection of plugins that comes with the
+         standard release of Proxyma. You can add to these lists
+         your own plugins.. you only have to implement them using
+         the proper interface. ;O)
+         NOTE: Plugins are applyed into the folders in registration order -->
+    <plugins>
+        <!-- List of chache Providers that can be used by proxyma core engine
+             These plugins implements the "CacheProvider" interface -->
+        <avaliableCacheProviders>
+            <cacheProvider class="m.c.m.proxyma.plugins.caches.NullCacheProvider"/>
+            <cacheProvider class="m.c.m.proxyma.plugins.caches.EhcacheCacheProvider"
+                           maxSizeOfCacheableResource="20971520"> <!-- 20MB (0 == unlimited) -->
+                <!-- These are the ehcache specific configuration parameters
+                     that will be used to create the cache manager. -->
+                <diskStore path="java.io.tmpdir"/>
+                <defaultCache maxElementsInMemory="10000"
+                              eternal="false"
+                              timeToIdleSeconds="300"
+                              timeToLiveSeconds="1800"
+                              overflowToDisk="true"
+                              diskPersistent="false"
+                              diskExpiryThreadIntervalSeconds="300"
+                              memoryStoreEvictionPolicy="LFU"/>
+            </cacheProvider>
+        </avaliableCacheProviders>
+
+        <!-- List of Preprocessor plugins that can be used by the proxyma engine.
+             These plugins extends the "AbstractPreprocessor" class overriding
+             the "process" method.
+             Note: The "executionPriority" attribute is like the unix nice system,
+                   The default value is 0, the plugins that shares the same value
+                   for it are executed in random order. Instead, the plugins with
+                   lesser values are executed first and the plugins with
+                   higer values are executed last. -->
+        <avaliablePreprocessors>
+            <resourceHandler class="m.c.m.proxyma.plugins.preprocessors.StoreTimestampPreprocessor" executionPriority="0" />
+            <resourceHandler class="m.c.m.proxyma.plugins.preprocessors.CookiesRewritePreprocessor" executionPriority="0" />
+        </avaliablePreprocessors>
+
+        <!-- List of Retriver plugins that can be used by the proxyma engine.
+             These plugins extends the "AbstractRetriver" class overriding
+             the "process" method. -->
+        <availableRetrivers>
+            <resourceHandler class="m.c.m.proxyma.plugins.retrivers.TestPageRetriver"/>
+            <resourceHandler class="m.c.m.proxyma.plugins.retrivers.SimpleHttpRetriver"/>
+        </availableRetrivers>
+
+        <!-- List of Transformer plugins that can be used by the proxyma engine
+             These plugins extends the "AbstractTransformer" class overriding
+             the "process" method.
+             Note: The "executionPriority" attribute is like the unix nice system,
+                   The default value is 0, the plugins that shares the same value
+                   for it are executed in random order. Instead, the plugins with
+                   lesser values are executed first and the plugins with
+                   higer values are executed last. -->
+        <avaliableTransformers>
+            <resourceHandler class="m.c.m.proxyma.plugins.transformers.CharsetInspectorTransformer" executionPriority="-1" />
+            <resourceHandler class="m.c.m.proxyma.plugins.transformers.HttpRedirectsRewriteTransformer" executionPriority="0" />
+            <resourceHandler class="m.c.m.proxyma.plugins.transformers.CookiesRewriteTransformer" executionPriority="0"/>
+            <resourceHandler class="m.c.m.proxyma.plugins.transformers.HtmlUrlRewriteTransformer" executionPriority="0"/>
+            <resourceHandler class="m.c.m.proxyma.plugins.transformers.CssUrlRewriteTransformer" executionPriority="0"/>
+            <resourceHandler class="m.c.m.proxyma.plugins.transformers.JSRewriteTransformer" executionPriority="0"/>
+        </avaliableTransformers>
+
+        <!-- List of Serializer plugins that can be used by the proxyma engine.
+             These plugins extends the "AbstractSerializer" class overriding
+             the "process" method. -->
+        <availableSerializers>
+            <resourceHandler class="m.c.m.proxyma.plugins.serializers.SimpleSerializer"
+                             accessLogMaxLinesPerFile="5000000" accessLogRetentionPolicy="5"/>
+            <resourceHandler class="m.c.m.proxyma.plugins.serializers.DebugSerializer"/>
+            <resourceHandler class="m.c.m.proxyma.plugins.serializers.PerformanceTestSerializer"
+                             accessLogMaxLinesPerFile="5000000" accessLogRetentionPolicy="5"
+                             performanceLogMaxLinesPerFile="5000000" performanceLogRetentionPolicy="1"/>
+        </availableSerializers>
+    </plugins>
+</proxyma-configuration>

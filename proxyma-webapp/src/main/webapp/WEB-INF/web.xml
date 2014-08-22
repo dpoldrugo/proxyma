@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE web-app PUBLIC
+ "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+ "http://java.sun.com/dtd/web-app_2_3.dtd" >
+<!--
+    Document   : web.xml
+    Description:
+       This is the main deply descriptor of proxyma-webapp.
+
+    NOTE:
+       this software is released under GPL License.
+       See the LICENSE of this distribution for more informations.
+
+       @author Marco Casavecchia Morganti (marcolinuz) [marcolinuz-at-gmail.com]
+       @version $Id: web.xml 169 2010-07-02 21:11:21Z marcolinuz $
+-->
+<web-app>
+  <!-- Application Name -->
+    <display-name>
+        Proxyma NG (Multiple Reverse/Proxy)
+    </display-name>
+
+    <!-- Application Description -->
+    <description>
+        This is a Java Reverse Proxy with basic url-rewriting capabilities based
+        upon the proxyma-core project.
+    </description>
+
+    <servlet>
+        <description>
+            This is the main servlet that process all the requests and performs
+            the url-rewriting job using the proxyma-core library.
+        </description>
+        <servlet-name>ProxymaServlet</servlet-name>
+        <servlet-class>m.c.m.proxyma.ProxymaServlet</servlet-class>
+
+        <!-- The name of the Proxyma Context for this webapp. -->
+        <init-param>
+            <param-name>ProxymaContextName</param-name>
+            <param-value>default</param-value>
+        </init-param>
+
+        <!-- The directory where proxyma will write its logs -->
+        <init-param>
+            <param-name>ProxymaLogsDir</param-name>
+            <param-value>./</param-value>
+            <!-- For tomcat use this value
+            <param-value>${catalina.home}/logs/</param-value> -->
+        </init-param>
+
+        <!-- Load the servlet on container startup -->
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+
+    <servlet>
+        <description>
+            This is the main servlet for the proxyma console.
+            It receive all the client requests to perform.
+        </description>
+        <servlet-name>ProxymaConsoleServlet</servlet-name>
+        <servlet-class>m.c.m.proxyma.ProxymaConsoleServlet</servlet-class>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>ProxymaConsoleServlet</servlet-name>
+        <url-pattern>/console</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>ProxymaServlet</servlet-name>
+        <url-pattern>/fetch/*</url-pattern>
+    </servlet-mapping>
+</web-app>
