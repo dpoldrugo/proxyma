@@ -114,46 +114,6 @@
                 </executions>
             </plugin>
             
-            <plugin>
-                <artifactId>maven-eclipse-plugin</artifactId>
-                <configuration>
-                    <tasks>
-                        <mkdir dir="target/generated-resources/eclipse" />
-                    </tasks>
-                    <wtpContextName>ROOT</wtpContextName>
-                    <additionalConfig>
-                        <file>
-                            <name>.settings/org.eclipse.wst.common.component</name>
-                            <content>
-                                <![CDATA[
-<?xml version="1.0" encoding="UTF-8"?>
-<project-modules id="moduleCoreId" project-version="1.5.0">
-	<wb-module deploy-name="${project.artifactId}">
-		<wb-resource deploy-path="/" source-path="/src/main/webapp" tag="defaultRootSource" />
-		<wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java" />
-		<wb-resource deploy-path="/WEB-INF/lib" source-path="/target/lib" />
-	</wb-module>
-</project-modules>]]>
-                            </content>
-                        </file>
-                        <file>
-                            <name>.settings/org.eclipse.wst.common.project.facet.core.xml</name>
-                            <content>
-                                <![CDATA[
-<faceted-project>
-  <runtime name="Apache Tomcat v7.0" />
-  <fixed facet="jst.java" />
-  <installed facet="jst.java" version="1.7" />
-  <installed facet="jst.jsf" version="2.0" />
-  <installed facet="jst.web" version="3.0" />
-  <installed facet="wst.jsdt.web" version="1.0" />
-</faceted-project>]]>
-                            </content>
-                        </file>
-                    </additionalConfig>
-                </configuration>
-            </plugin>
-            
         </plugins>
     </build>
 </project>
