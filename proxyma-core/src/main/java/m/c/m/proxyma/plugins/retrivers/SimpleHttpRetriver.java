@@ -164,6 +164,10 @@ public class SimpleHttpRetriver extends m.c.m.proxyma.plugins.retrivers.Abstract
 
             //get the connection method
             String method = originalRequest.getMethod();
+            
+        	//set the connection method
+        	log.finer("Set Method: " + method);
+        	retVal.setRequestMethod(method);
 
             //set the body of the connection if needed..
             int maxUpstreamSize = aResource.getProxyFolder().getMaxPostSize();
@@ -195,10 +199,6 @@ public class SimpleHttpRetriver extends m.c.m.proxyma.plugins.retrivers.Abstract
                 writer.close();
                 reader.close();
             }
-
-            //set the connection method
-            log.finer("Set Method: " + method);
-            retVal.setRequestMethod(method);
 
         } catch (IOException ex) {
             log.severe("Unable to obtain dtata from: " + destination + "!!!");
@@ -338,7 +338,7 @@ public class SimpleHttpRetriver extends m.c.m.proxyma.plugins.retrivers.Abstract
                             theCookie = new Cookie(cookieNameValue[0], EMPTY_STRING);
                     }
                     while (st.hasMoreTokens()) {
-                        String token = st.nextToken();
+                        String token = st.nextToken().toLowerCase();
                         if (token.startsWith(COOKIE_DOMAIN)) {
                             //Rewrites the domain of cookie (this will be rewritten soon by the rewriter)
                             token = token.replaceFirst(COOKIE_DOMAIN, EMPTY_STRING);
