@@ -16,7 +16,7 @@
     <!-- Global settings for every instance of proxyma -->
     <global>
         <!-- Version of this release of the proxyma-core engine -->
-        <version>1.1-SNAPSHOT</version>
+        <version>1.2-SNAPSHOT</version>
 
        <!-- Specify the default encoding charset to use -->
        <defaultEncoding>UTF-8</defaultEncoding>

@@ -18,7 +18,7 @@
     <groupId>m.c.m.proxyma</groupId>
     <artifactId>proxyma-webapp</artifactId>
     <packaging>war</packaging>
-    <version>1.1-SNAPSHOT</version>
+    <version>1.2-SNAPSHOT</version>
 
     <name>proxyma-webapp</name>
     <url>http://proxyma.sourceforge.net/</url>
@@ -26,7 +26,7 @@
     <parent>
         <groupId>m.c.m.proxyma</groupId>
         <artifactId>proxyma</artifactId>
-        <version>1.1-SNAPSHOT</version>
+        <version>1.2-SNAPSHOT</version>
     </parent>
 
     <repositories>
@@ -41,7 +41,7 @@
         <dependency>
             <groupId>m.c.m.proxyma</groupId>
             <artifactId>proxyma-core</artifactId>
-            <version>1.1-SNAPSHOT</version>
+            <version>1.2-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>commons-configuration</groupId>

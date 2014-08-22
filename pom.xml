@@ -17,7 +17,7 @@
     -->
     <modelVersion>4.0.0</modelVersion>
     <groupId>m.c.m.proxyma</groupId>
-    <version>1.1-SNAPSHOT</version>
+    <version>1.2-SNAPSHOT</version>
     <artifactId>proxyma</artifactId>
     <packaging>pom</packaging>
     <name>proxyma</name>
