@@ -1,6 +1,7 @@
 package m.c.m.proxyma.core;
 
 import m.c.m.proxyma.plugins.caches.CacheProvider;
+
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.util.Collection;
@@ -8,6 +9,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.logging.Logger;
+
 import m.c.m.proxyma.ProxymaTags;
 import m.c.m.proxyma.context.ProxyFolderBean;
 import m.c.m.proxyma.context.ProxymaContext;
@@ -131,6 +133,10 @@ public class ProxyEngine {
 
                 //Set the destination subpath into the resource
                 aResource.setDestinationSubPath(subPath.replaceFirst(PATH_SEPARATOR+URLEncodedProxyFolder, EMPTY_STRING));
+                
+                if (aResource.getDestinationSubPath().contains("ext-grid.js")) {
+                	System.out.println("ext-grid.js");
+                }
 
                 // *** NOW I know what the user has Just asked for ***
                 Iterator<String> configuredPlugins = null;
