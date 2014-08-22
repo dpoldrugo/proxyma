@@ -2,7 +2,7 @@ package m.c.m.proxyma.rewrite;
 
 import com.meterware.httpunit.GetMethodWebRequest;
 import com.meterware.httpunit.WebRequest;
-import com.meterware.httpunit.WebResponse;;
+import com.meterware.httpunit.WebResponse;
 import com.meterware.servletunit.InvocationContext;
 import com.meterware.servletunit.ServletRunner;
 import com.meterware.servletunit.ServletUnitClient;
