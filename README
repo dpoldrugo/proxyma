@@ -1,3 +1,8 @@
+This is a fork from http://proxyma.sourceforge.net/
+Last commit: *184	7/21/10, 12:26 AM	7	marcolinuz	Solved some problems about useless
+stack traces when the links of a page are not found
+
+
 Hello all,
 
 This is my little project "Proxyma NG".
