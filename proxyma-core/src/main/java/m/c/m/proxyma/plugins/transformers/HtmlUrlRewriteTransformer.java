@@ -59,6 +59,11 @@ public class HtmlUrlRewriteTransformer extends m.c.m.proxyma.plugins.transformer
     public void process(ProxymaResource aResource) throws Exception {
         ProxymaResponseDataBean originalResponse = aResource.getResponse().getResponseData();
         ProxymaHttpHeader contentType = originalResponse.getHeader(CONTENT_TYPE_HEADER);
+        if (contentType == null) {
+        	log.fine(String.format("No %s header", CONTENT_TYPE_HEADER));        	
+        	return;
+        }
+        
         ProxyFolderBean folder = aResource.getProxyFolder();
         Matcher contentTypeMatcher = processedContentType.matcher(contentType.getValue());
 

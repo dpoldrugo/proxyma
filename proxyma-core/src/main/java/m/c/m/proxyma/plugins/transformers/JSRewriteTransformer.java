@@ -59,6 +59,11 @@ public class JSRewriteTransformer extends m.c.m.proxyma.plugins.transformers.Abs
     public void process(ProxymaResource aResource) throws Exception {
         ProxymaResponseDataBean originalResponse = aResource.getResponse().getResponseData();
         ProxymaHttpHeader contentType = originalResponse.getHeader(CONTENT_TYPE_HEADER);
+        if (contentType == null) {
+        	log.fine(String.format("No %s header", CONTENT_TYPE_HEADER));        	
+        	return;
+        }
+        
         Matcher htmlTypeMatcher = htmlContentTypePattern.matcher(contentType.getValue());
 
         // The plugin works only on Javascript documents or fragments
