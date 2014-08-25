@@ -203,7 +203,7 @@ public class JSRewriteTransformer extends m.c.m.proxyma.plugins.transformers.Abs
 
         if (jsTypeMatcher.matches())
             retValue = true;
-         else if (textTypeMatcher.matches() && aResource.getRequest().getRequestURI().toLowerCase().endsWith(".js"))
+        else if (textTypeMatcher.matches() && aResource.getRequest().getRequestURI().toLowerCase().endsWith(".js"))
             retValue = true;
 
         return retValue;
