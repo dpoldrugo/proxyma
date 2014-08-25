@@ -193,7 +193,7 @@ public class JSRewriteTransformer extends m.c.m.proxyma.plugins.transformers.Abs
      * Guess it the current resource is processable by this plugin
      *
      * @param aResource the current resource
-     * @return true if it's a CSS file.
+     * @return true if it's a JS file.
      */
     private boolean isProcessableTextResource (ProxymaResource aResource) {
         boolean retValue = false;
