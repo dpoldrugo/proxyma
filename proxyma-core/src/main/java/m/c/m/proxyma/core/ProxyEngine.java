@@ -134,10 +134,6 @@ public class ProxyEngine {
                 //Set the destination subpath into the resource
                 aResource.setDestinationSubPath(subPath.replaceFirst(PATH_SEPARATOR+URLEncodedProxyFolder, EMPTY_STRING));
                 
-                if (aResource.getDestinationSubPath().contains("ext-grid.js")) {
-                	System.out.println("ext-grid.js");
-                }
-
                 // *** NOW I know what the user has Just asked for ***
                 Iterator<String> configuredPlugins = null;
                 ResourceHandler plugin = null;
