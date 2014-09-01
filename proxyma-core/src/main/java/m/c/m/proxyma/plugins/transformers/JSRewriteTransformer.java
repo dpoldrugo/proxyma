@@ -149,11 +149,11 @@ public class JSRewriteTransformer extends m.c.m.proxyma.plugins.transformers.Abs
                 if (charsetMatcher.find())
                     encoding = charsetMatcher.replaceFirst(EMPTY_STRING);
 
-                //Get the original CSS Data
+                //Get the original JS Data
                 ByteBufferReader reader = ByteBufferFactory.createNewByteBufferReader(originalResponse.getData());
                 String content = new String(reader.getWholeBufferAsByteArray(), encoding);
 
-                //Parse and Rewrite CSS Data
+                //Parse and Rewrite JS Data
                 String newContent = findAndRewriteJSLinks(content, aResource);
 
                 //Add to the response the rewritten data
