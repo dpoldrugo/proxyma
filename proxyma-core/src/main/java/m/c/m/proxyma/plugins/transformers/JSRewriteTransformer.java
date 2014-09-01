@@ -230,12 +230,12 @@ public class JSRewriteTransformer extends m.c.m.proxyma.plugins.transformers.Abs
     }
 
     /**
-     * Replaces a cssurl with the complete url directive
+     * Replaces a JS url with the complete url directive
      * (es: www.a/b/c -> url(/d/b/c) )
      *
      * @param theUrl the url to rewrite.
      * @param aResouce the current resource
-     * @return the new url() css directive.
+     * @return the new url() JS directive.
      */
     private String replaceJSURL (String theUrl, ProxymaResource aResouce) {
         URL proxymaRootURL = aResouce.getProxymaRootURL();
