@@ -31,7 +31,7 @@
     %>
     <head>
         <title>Proxyma Configuration Console</title>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         <link href="<%=proxymaContextPath%>/stile.css" rel="stylesheet" type="text/css">
         <script type="text/javascript">
             //Shows or hides divs based upon the content of the section box
@@ -404,4 +404,4 @@
             </div>
         </div>
     </body>
-</html:html>
+</html>
