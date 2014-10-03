@@ -69,6 +69,13 @@ public class ProxymaConsoleServlet extends HttpServlet {
         String target = httpservletrequest.getParameter(GlobalConstants.TARGET_PARAMETER);
         String action = httpservletrequest.getParameter(GlobalConstants.ACTION_PARAMETER);
         String command = httpservletrequest.getParameter(GlobalConstants.COMMAND_PARAMETER);
+        
+        if (context == null && target == null && action == null && command == null) {
+        	context = "default";
+        	target = "none";
+        	action = "reloadOverview";
+        	command = "reloadPage";
+        }
 
         if (!(validateParameters(context, command, target, action))) {
             httpservletresponse.sendError(HttpServletResponse.SC_BAD_REQUEST);
