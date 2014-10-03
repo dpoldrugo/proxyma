@@ -139,35 +139,20 @@ public class ProxyEngine {
                 ResourceHandler plugin = null;
                 CacheProvider cache = null;
                 try {
-                    //Applying all the folder-specific preprocessors to the resource in registration order
-                    configuredPlugins = folder.getPreprocessors().iterator();
-                    while (configuredPlugins.hasNext()) {
-                        plugin = availablePreprocessors.get(configuredPlugins.next());
-                        log.finer("Applying preprocessor: " + plugin.getName());
-                        plugin.process(aResource);
-                    }
+                    applyPreprocessors(aResource, folder);
 
                     //Use the folder-specific cache provider to search for the wanted resource into the cache subsystem
                     cache = availableCacheProviders.get(folder.getCacheProvider());
                     if (!cache.getResponseData(aResource)) {
                         log.fine("Resource not found into cache provider: " + cache.getName());
                         // *** The resource is not present into the cache **
-                        //Go to retrive it using the folder-specific retriver
-                        plugin = availableRetrivers.get(folder.getRetriver());
-                        log.finer("Getting resource with the "+ plugin.getName());
-                        plugin.process(aResource);
+                        applyRetriver(aResource, folder);
 
                         //Set the Server Header into the response:
                         aResource.getResponse().getResponseData().deleteHeader(SERVER_HEADER);
                         aResource.getResponse().getResponseData().addHeader(SERVER_HEADER, context.getProxymaVersion());
 
-                        //Apply the folder-specific transformer in registration order
-                        configuredPlugins = folder.getTransformers().iterator();
-                        while (configuredPlugins.hasNext()) {
-                            plugin = availableTransformers.get(configuredPlugins.next());
-                            log.finer("Applying transformer: " + plugin.getName());
-                            plugin.process(aResource);
-                        }
+                        applyTransformers(aResource, folder);
 
                         //Invoke the cache plugin to store the resource if it's cacheable
                         cache.storeResponseDataIfCacheable(aResource);
@@ -194,6 +179,39 @@ public class ProxyEngine {
         //Return the status to the caller
         return retValue;
     }
+
+	private void applyPreprocessors(ProxymaResource aResource, ProxyFolderBean folder) throws Exception {
+		//Applying all the folder-specific preprocessors to the resource in registration order
+		ResourceHandler plugin;
+		Iterator<String> configuredPlugins = folder.getPreprocessors().iterator();
+		String pluginClassAsString = configuredPlugins.next();
+		while (configuredPlugins.hasNext()) {
+		    plugin = availablePreprocessors.get(pluginClassAsString);
+		    log.finer("Applying preprocessor: " + plugin.getName());
+		    plugin.process(aResource);
+		}
+	}
+
+	private void applyRetriver(ProxymaResource aResource, ProxyFolderBean folder) throws Exception {
+		//Go to retrive it using the folder-specific retriver
+		ResourceHandler plugin = availableRetrivers.get(folder.getRetriver());
+		log.finer("Getting resource with the "+ plugin.getName());
+		plugin.process(aResource);
+	}
+
+	private void applyTransformers(ProxymaResource aResource, ProxyFolderBean folder) throws Exception {
+		// Apply the folder-specific transformer in registration order
+		ResourceHandler plugin;
+		Iterator<String> configuredPlugins = folder.getTransformers().iterator();
+		while (configuredPlugins.hasNext()) {
+			String pluginClassAsString = configuredPlugins.next();
+		    plugin = availableTransformers.get(pluginClassAsString);
+		    if (plugin == null)
+		    	throw new IllegalStateException("Plugin class not found in classpath: " + pluginClassAsString);
+		    log.finer("Applying transformer: " + plugin.getName());
+		    plugin.process(aResource);
+		}
+	}
 
     /**
      * Get a Collection of CacheProviders registered into the Engine.
