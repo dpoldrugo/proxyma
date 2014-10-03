@@ -65,6 +65,7 @@
                 <resourceHandler class="m.c.m.proxyma.plugins.transformers.CookiesRewriteTransformer"/>
                 <resourceHandler class="m.c.m.proxyma.plugins.transformers.HttpRedirectsRewriteTransformer"/>
                 <resourceHandler class="m.c.m.proxyma.plugins.transformers.JSRewriteTransformer"/>
+                <resourceHandler class="m.c.m.proxyma.plugins.transformers.JSCustomUrlRewriteTransformer"/>
             </transformers>
             <serializer class="m.c.m.proxyma.plugins.serializers.SimpleSerializer"/>
         </folderSettings>
@@ -132,6 +133,7 @@
             <resourceHandler class="m.c.m.proxyma.plugins.transformers.HtmlUrlRewriteTransformer" executionPriority="0"/>
             <resourceHandler class="m.c.m.proxyma.plugins.transformers.CssUrlRewriteTransformer" executionPriority="0"/>
             <resourceHandler class="m.c.m.proxyma.plugins.transformers.JSRewriteTransformer" executionPriority="0"/>
+            <resourceHandler class="m.c.m.proxyma.plugins.transformers.JSCustomUrlRewriteTransformer" executionPriority="1"/>
         </avaliableTransformers>
 
         <!-- List of Serializer plugins that can be used by the proxyma engine.
