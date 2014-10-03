@@ -52,9 +52,6 @@ public class JSCustomUrlRewriteTransformer extends m.c.m.proxyma.plugins.transfo
     @Override
     public void process(ProxymaResource aResource) throws Exception {
         ProxymaResponseDataBean originalResponse = aResource.getResponse().getResponseData();
-        if (aResource.getDestinationSubPath().contains("ext-grid.js")) {
-        	System.out.println("ext-grid.js");
-        }
         if (aResource.getDestinationSubPath().contains("jquery")) {
         	log.fine("Skipping " + aResource.getDestinationSubPath());
         	return;
