@@ -55,9 +55,16 @@ public class URLRewriteEngine {
                 retVal = rewriteSiteAbsoluteURL(theURL, aResource.getProxyFolder(), aResource.getProxymaRootURL().getPath());
                  log.finer("Rewritten site absolute URL: " + theURL + " -> " + retVal);
             } else {
-                //This is a relative URL no rewriting is needed..
-                retVal = theURL;
-                log.finer("Relative URL: " + theURL + " not rewritten");
+            	// if root folder - without /
+            	if (aResource.getRequest().getSubPath().endsWith("/"+aResource.getProxyFolder().getFolderName())) {
+            		retVal = aResource.getProxyFolder().getFolderName() + "/" + theURL;
+            		log.finer("Rewritten root folder URL: " + theURL + " -> " + retVal);
+            	}
+            	else {
+            		//This is a relative URL no rewriting is needed..
+            		retVal = theURL;
+            		log.finer("Relative URL: " + retVal + " not rewritten");
+            	}
             }
         }
 
