@@ -180,7 +180,15 @@ public class ProxyFolderBean implements Serializable {
         }
     }
 
-    /**
+    public String getFolderNamePretty() {
+		return folderNamePretty;
+	}
+
+	public void setFolderNamePretty(String folderNamePretty) {
+		this.folderNamePretty = folderNamePretty;
+	}
+
+	/**
      * Standard getter method to know if the proxy folder is enabled
      * @return true if the folder is enabled, false otherwise.
      */
@@ -435,6 +443,8 @@ public class ProxyFolderBean implements Serializable {
      * The proxy folder name
      */
     private String folderName = null;
+    
+    private String folderNamePretty = null;
 
     /**
      * the url encoded versione of the proxy folder name.
