@@ -33,7 +33,7 @@ public class ProxymaConsoleServlet extends HttpServlet {
      */
     @Override
     public void init() throws ServletException {
-        //Create a new proxyma facade
+        // Create a new proxyma facade
         this.proxyma = new ProxymaFacade();
     }
 
