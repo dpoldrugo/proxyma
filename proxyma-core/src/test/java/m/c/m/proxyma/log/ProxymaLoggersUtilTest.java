@@ -84,6 +84,7 @@ public class ProxymaLoggersUtilTest extends TestCase {
             assertTrue(foundFileHandler);
             assertEquals(curLevel.toString(), "ALL");
         } catch (Throwable t) {
+        	t.printStackTrace();
             fail("unexpected Exception raised.");
         }
 
