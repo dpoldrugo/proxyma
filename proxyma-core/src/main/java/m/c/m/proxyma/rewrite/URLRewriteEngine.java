@@ -56,7 +56,7 @@ public class URLRewriteEngine {
                  log.finer("Rewritten site absolute URL: " + theURL + " -> " + retVal);
             } else {
             	// if root folder - without /
-            	if (aResource.getRequest().getSubPath().endsWith("/"+aResource.getProxyFolder().getFolderName())) {
+            	if (aResource.getRequest().getSubPath() != null && aResource.getRequest().getSubPath().endsWith("/"+aResource.getProxyFolder().getFolderName())) {
             		retVal = aResource.getProxyFolder().getFolderName() + "/" + theURL;
             		log.finer("Rewritten root folder URL: " + theURL + " -> " + retVal);
             	}
